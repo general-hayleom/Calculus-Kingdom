@@ -71,6 +71,9 @@ body.map-mode .map-tower .tower-sigil{width:102px;height:120px}
 body.map-mode .map-tower .tower-sigil svg{width:98px;height:120px}
 body.map-mode .map-tower:nth-of-type(odd){left:36%!important}
 body.map-mode .map-tower:nth-of-type(even){left:64%!important;grid-template-columns:1fr 102px}}
+
+body.map-mode .map-tower .tower-index,body.map-mode .map-tower .tower-name,body.map-mode .map-tower .tower-progress,body.map-mode .map-tower .tower-state{position:relative;z-index:3;background:#171722e8;border-radius:5px;padding:3px 7px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+body.map-mode .map-tower .tower-progress{padding:0 7px;height:5px;background:transparent}
 </style></head>
 <body><div class="shell">
 <header class="top"><div class="brand"><span class="sigil">∫</span> CALCULUS KINGDOM</div><div class="topright"><span class="mono" id="playerLabel">VISITOR</span><button id="chatToggle">Ask the Elder ✦</button></div></header>
@@ -131,7 +134,7 @@ function renderTowers(){
  }).join(''));
  root.querySelectorAll('.map-tower:not(:disabled)').forEach(el=>el.onclick=()=>openTower(+el.dataset.t));
 }
-$('#howBtn').onclick=()=>document.querySelector('.sectionhead').scrollIntoView({behavior:'smooth'});
+
 function openTower(i){activeTower=i;stepIndex=state.done[towers[i].id]||0;$('#towerUnit').textContent=towers[i].unit;$('#towerTitle').textContent=towers[i].title;$('#towerDesc').textContent=towers[i].theme;$('#towerWizard').textContent=towers[i].wizard;show('tower');renderPath();renderStep()}
 function renderPath(){let d=state.done[towers[activeTower].id]||0;$('#path').innerHTML=steps.map((s,i)=>'<div class="step '+(i<d?'done':i===d?'current':'locked')+'"><div class="node">'+(i<d?'✓':i+1)+'</div><div class="stepname">'+s+'</div></div>').join('')}
 function completeStep(message){let t=towers[activeTower];state.done[t.id]=Math.max(state.done[t.id]||0,stepIndex+1);if(stepIndex===3)state.damage[t.id]=100;save();$('#toastEmoji').textContent=stepIndex===3?'🏰':'✨';$('#toastTitle').textContent=stepIndex===3?'Wizard defeated!':'Trail cleared';$('#toastText').textContent=message;$('#toastBtn').onclick=()=>{if(stepIndex===3){stepIndex=4}else stepIndex++;hideToast();renderPath();renderStep()};$('#toast').classList.add('show')}
