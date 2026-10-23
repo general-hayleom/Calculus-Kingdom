@@ -84,6 +84,16 @@ body.map-mode .chat .bubble.me{background:linear-gradient(135deg,#51412f,#3f342e
 body.map-mode .chat #chatInput{font-family:'Palatino Linotype','Book Antiqua',ui-serif,Georgia,serif;font-size:14px;letter-spacing:.015em}
 body.map-mode .chat #chatInput::placeholder{font-family:'Palatino Linotype','Book Antiqua',ui-serif,Georgia,serif;font-style:italic;letter-spacing:.015em}
 body.map-mode .chat .bubble.me{font-family:'Palatino Linotype','Book Antiqua',ui-serif,Georgia,serif;font-size:14px;line-height:1.65;letter-spacing:.015em}
+
+/* A small arcane cursor and a brief, low-key sparkle trail. */
+@media(pointer:fine){
+body{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M16 1l3.2 10.2L29 16l-9.8 4.8L16 31l-4.8-10.2L1 16l10.2-4.8z' fill='%23ead9ff' stroke='%23a98bf2' stroke-width='1.3'/%3E%3Ccircle cx='16' cy='16' r='2' fill='%23fff'/%3E%3C/svg%3E") 16 16,auto}
+button,a,[role=button]{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M16 1l3.2 10.2L29 16l-9.8 4.8L16 31l-4.8-10.2L1 16l10.2-4.8z' fill='%23ffe6a8' stroke='%23d0a854' stroke-width='1.3'/%3E%3Ccircle cx='16' cy='16' r='2' fill='%23fff'/%3E%3C/svg%3E") 16 16,pointer}
+input,textarea{cursor:text}
+.magic-cursor-trail{position:fixed;z-index:99;width:12px;height:12px;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);background:radial-gradient(circle,#fff 0 8%,#e7c9ff 14%,#b597ff70 40%,transparent 72%);box-shadow:0 0 13px #c4a5ff85;animation:cursorSparkFade .58s ease-out forwards}
+@keyframes cursorSparkFade{0%{opacity:.9;transform:translate(-50%,-50%) scale(.7)}35%{opacity:.7;transform:translate(-50%,-60%) scale(1)}100%{opacity:0;transform:translate(-50%,-100%) scale(.15)}}
+}
+@media(prefers-reduced-motion:reduce){.magic-cursor-trail{display:none}}
 </style></head>
 <body><div class="shell">
 <header class="top"><div class="brand"><span class="sigil">∫</span> CALCULUS KINGDOM</div><div class="topright"><span class="mono" id="playerLabel">VISITOR</span><button id="chatToggle">Ask the Elder ✦</button></div></header>
@@ -158,5 +168,6 @@ function drawGraph(){let c=$('#graph');if(!c)return;let x=c.getContext('2d'),w=c
 function toggleElder(){let c=$('#chat'),open=c.classList.contains('hidden');c.classList.toggle('hidden',!open);c.style.display=open?'flex':'none';if(open)$('#chatInput').focus()}$('#chatToggle').onclick=toggleElder;$('#closeChat').onclick=()=>{$('#chat').classList.add('hidden');$('#chat').style.display='none'};
 function reply(q){let s=q.toLowerCase();if(s.includes('limit'))return 'A limit asks what value a function approaches as x nears a point. Try simplifying first if substitution gives 0/0.';if(s.includes('deriv')||s.includes('slope')||s.includes('rate'))return 'A derivative is instantaneous rate of change. For powers, bring the exponent down, then reduce it by one: xⁿ → n·xⁿ⁻¹.';if(s.includes('integr')||s.includes('area')||s.includes('antideriv'))return 'An integral accumulates quantities. For a definite integral, find an antiderivative F and compute F(b)−F(a).';if(s.includes('boss')||s.includes('tower'))return 'Each tower goes lesson → multiple choice → written reflection → wizard duel. Correctly solve the duel question, then choose a spell to damage the guardian.';if(s.includes('help')||s.includes('play'))return 'Explore the first tower, read its lesson, and follow the five markers. Finish the guardian challenge to unlock the next tower.';return 'Tell me which idea you are working on: limits, derivatives, or integrals. I can offer a short hint.'}
 function send(){let q=$('#chatInput').value.trim();if(!q)return;let b=document.createElement('div');b.className='bubble me';b.textContent=q;$('#chatbody').appendChild(b);let a=document.createElement('div');a.className='bubble';a.textContent=reply(q);$('#chatbody').appendChild(a);$('#chatbody').scrollTop=$('#chatbody').scrollHeight;$('#chatInput').value=''}$('#sendChat').onclick=send;$('#chatInput').onkeydown=e=>{if(e.key==='Enter')send()};
+if(window.matchMedia('(pointer:fine)').matches&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){let lastMagicTrail=0;window.addEventListener('pointermove',e=>{let now=performance.now();if(now-lastMagicTrail<48)return;lastMagicTrail=now;let p=document.createElement('span');p.className='magic-cursor-trail';p.setAttribute('aria-hidden','true');p.style.left=e.clientX+'px';p.style.top=e.clientY+'px';document.body.appendChild(p);setTimeout(()=>p.remove(),650)},{passive:true})}
 save();if(state.name)$('#nameInput').value=state.name;
 </script></body></html>
