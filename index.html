@@ -79,6 +79,11 @@ body.map-mode .map-tower .tower-progress{padding:0 7px;height:5px;background:tra
 body.map-mode .chat .bubble{font-family:'Palatino Linotype','Book Antiqua',ui-serif,Georgia,serif;font-size:14px;line-height:1.65;letter-spacing:.015em;font-weight:500}
 body.map-mode .chat .bubble:not(.me){background:linear-gradient(135deg,#302b43,#24232f);border:1px solid #594d70;color:#eee7f7}
 body.map-mode .chat .bubble.me{background:linear-gradient(135deg,#51412f,#3f342e);border:1px solid #7c6544;color:#fff0ce}
+
+/* Match the seeker's composing text to Elder Orin's storybook replies. */
+body.map-mode .chat #chatInput{font-family:'Palatino Linotype','Book Antiqua',ui-serif,Georgia,serif;font-size:14px;letter-spacing:.015em}
+body.map-mode .chat #chatInput::placeholder{font-family:'Palatino Linotype','Book Antiqua',ui-serif,Georgia,serif;font-style:italic;letter-spacing:.015em}
+body.map-mode .chat .bubble.me{font-family:'Palatino Linotype','Book Antiqua',ui-serif,Georgia,serif;font-size:14px;line-height:1.65;letter-spacing:.015em}
 </style></head>
 <body><div class="shell">
 <header class="top"><div class="brand"><span class="sigil">∫</span> CALCULUS KINGDOM</div><div class="topright"><span class="mono" id="playerLabel">VISITOR</span><button id="chatToggle">Ask the Elder ✦</button></div></header>
