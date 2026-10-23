@@ -68,7 +68,7 @@ function renderTowers(){
  root.querySelectorAll('.map-tower').forEach(n=>n.remove());
  root.insertAdjacentHTML('beforeend',towers.map((t,i)=>{
   const done=state.done[t.id]||0, sealed=done===5, locked=i>state.unlocked, point=towerPoints[i], color=towerColors[i];
-  return '<button class="map-tower '+(locked?'sleeping':'')+'" data-t="'+i+'" style="left:'+point[0]+'%;top:'+point[1]+'%;--tower-glow:'+color+';--tower-faint:'+color+'42" aria-label="'+(locked?'Locked tower: ':'Enter tower: ')+t.title+'" '+(locked?'disabled':'')+'><span class="tower-aura"></span><span class="tower-index">✦ '+t.unit+' ✦</span><span class="tower-sigil">'+svg+'</span><span class="tower-name">'+t.title+'</span><span class="tower-progress"><i style="width:'+done*20+'%"></i></span><span class="tower-state">'+(sealed?'SEALED':locked?'LOCKED':'ENTER TOWER →')+'</span></button>'
+  return '<button class="map-tower '+(locked?'sleeping':'')+'" data-t="'+i+'" style="left:'+point[0]+'%;top:'+point[1]+'%;--tower-glow:'+color+';--tower-faint:'+color+'42" aria-label="'+(locked?'Locked tower: ':'Enter tower: ')+t.title+'" '+(locked?'disabled':'')+'><span class="tower-aura"></span><span class="tower-index">✦ '+t.unit.replace('Tower ','').replace(' · Chapter',' / CH.')+' ✦</span><span class="tower-sigil">'+towerSvg(i)+'</span><span class="tower-name">'+t.title+'</span><span class="tower-progress"><i style="width:'+done*20+'%"></i></span><span class="tower-state">'+(sealed?'SEALED':locked?'LOCKED':'ENTER TOWER →')+'</span></button>'
  }).join(''));
  root.querySelectorAll('.map-tower:not(:disabled)').forEach(el=>el.onclick=()=>openTower(+el.dataset.t));
 }
