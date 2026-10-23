@@ -1,6 +1,17 @@
 # Calculus Kingdom
 
-A small, original browser-based calculus learning adventure. The site is a single static HTML page with no build step or third-party assets required.
+An original browser-based calculus learning adventure. The site is a static HTML page with no build step or external media dependencies.
+
+## Curriculum framework
+
+The ten tower units follow the chapter sequence in Larson and Edwards, *Calculus*, 10th edition: limits; differentiation; derivative applications; integration; transcendental functions; differential equations; integration applications; integration techniques; infinite series; and parametric and polar calculus.
+
+The Montgomery Blair Magnet Analysis 1 course description is used as a scope framework. It describes delta-epsilon limits, differentiation and integration developed from limits, the nonvector AP Calculus objectives at greater rigor, infinite series, differential equations, polar analysis, and applications in science and economics. The published page is a course description, not a detailed official weekly syllabus, so the site's order follows the textbook contents rather than claiming to reproduce the school's calendar.
+
+- [Montgomery Blair Magnet mathematics course descriptions](https://old.mbhs.edu/departments/magnet/courses_math.php)
+- [Montgomery Blair Magnet program profile](https://old.mbhs.edu/departments/magnet/ParentResources/MagnetProfile.pdf)
+
+Lessons and activities on this site are newly written summaries and questions inspired by the listed concepts. The textbook PDF, its exercise wording, and its illustrations are not included or republished. This is an independent learning project, not an official Montgomery Blair High School resource.
 
 ## Play locally
 
@@ -19,4 +30,4 @@ A custom domain such as `calculuskingdom.com` must be registered separately and 
 
 ## Content and privacy
 
-All lesson explanations, questions, story text, and visuals are original or native emoji/CSS. No textbook PDF, copied illustrations, external image files, user accounts, or analytics are included. The player's name, progress, and written reflections are stored in browser local storage on the device being used. The Elder wizard gives short, built-in hints; it is not connected to an AI service.
+The game's story, explanations, and questions are original; visuals use CSS and system emoji. No textbook PDF, copied illustrations, or external media assets are included. The player's name, progress, and written reflections are stored in browser local storage on the device being used. The Elder wizard gives short, built-in hints; it is not connected to an AI service.
