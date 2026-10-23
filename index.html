@@ -82,7 +82,7 @@ let state={...defaults,...JSON.parse(localStorage.getItem('ck-state')||'{}')},ac
 const $=s=>document.querySelector(s);
 function save(){localStorage.setItem('ck-state',JSON.stringify(state));$('#playerLabel').textContent=state.name?state.name.toUpperCase():'VISITOR'}
 function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.body.classList.toggle('map-mode',id==='map');window.scrollTo({top:0,behavior:'smooth'})}
-function enterMap(){show('map');$('#chat').classList.remove('hidden');renderTowers()}
+function enterMap(){show('map');$('#chat').classList.add('hidden');renderTowers()}
 $('#beginBtn').onclick=()=>show('intro');
 $('#nameBtn').onclick=()=>{let n=$('#nameInput').value.trim();if(!n){$('#nameInput').focus();return}state.name=n;save();$('#storyTitle').textContent='The kingdom needs a seeker, '+n+'.';$('#storyText').textContent='Long ago, the kingdom’s paths were charted with calculus: limits revealed the edge of the known, derivatives measured change, and integrals gathered what was scattered. Ten tower wizards now guard those ideas, from limits and derivatives to series and polar curves. Study each trail, answer their challenges, and bring the tower seals back to the map. I will be here if you need a hint.';show('story')};
 $('#storyNext').onclick=enterMap;$('#skipStory').onclick=enterMap;$('#backMap').onclick=enterMap;
