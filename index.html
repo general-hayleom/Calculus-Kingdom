@@ -57,7 +57,7 @@ $('#beginBtn').onclick=()=>show('intro');
 $('#nameBtn').onclick=()=>{let n=$('#nameInput').value.trim();if(!n){$('#nameInput').focus();return}state.name=n;save();$('#storyTitle').textContent='The kingdom needs a seeker, '+n+'.';$('#storyText').textContent='Long ago, the kingdom’s paths were charted with calculus: limits revealed the edge of the known, derivatives measured change, and integrals gathered what was scattered. Ten tower wizards now guard those ideas, from limits and derivatives to series and polar curves. Study each trail, answer their challenges, and bring the tower seals back to the map. I will be here if you need a hint.';show('story')};
 $('#storyNext').onclick=enterMap;$('#skipStory').onclick=enterMap;$('#backMap').onclick=enterMap;
 const towerColors=['#e7bd75','#88d9f1','#efa5d2','#9fe0be','#f1a56e','#a9a2ff','#e88c77','#78d3bd','#d8a2ff','#f2d27b'];
-const towerPoints=[[12,28],[31,17],[52,26],[78,17],[89,39],[70,55],[48,46],[26,58],[12,77],[48,82]];
+const towerPoints=[[12,28],[31,17],[52,26],[78,17],[89,39],[67,56],[45,41],[24,58],[12,79],[48,84]];
 function renderTowers(){
  const root=$('#towers');
  root.querySelectorAll('.map-tower').forEach(n=>n.remove());
